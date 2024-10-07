@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 export function Nav(){
     return (
         <nav>
-            <ul>
+            <ul className="flex gap-5 py-5 px-5">
                 <li>
                     <Link to="/">Home</Link>
                 </li>

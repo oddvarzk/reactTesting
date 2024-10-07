@@ -1,44 +1,25 @@
 import React from "react"
-import { Routes, Route, Link } from "react-router-dom"
+import { Routes, Route, Link, useParams } from "react-router-dom"
+import { Layout } from "./CAComponents/layout";
+import Home from "./Pages/home";
+import Contact from "./Pages/contact";
+import Cart from "./CAComponents/cart";
+import RouteNotFound from "./Pages/notFound";
 
-function Home() {
-  return <div>Home</div>
-}
-
-function Products() {
-  return <div>Products</div>
-}
-
-function RouteNotFound() {
-  return <div>Page not found</div>
-}
-
-function Nav() {
-  return (
-    <nav>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/products">Products</Link>
-        </li>
-      </ul>
-    </nav>
-  )
-}
 
 function App() {
   return (
     <div>
-      <Nav />
       <Routes>
-        <Route index element={<Home />} />
-        <Route path="products" element={<Products />} />
-        <Route path="*" element={<RouteNotFound />} />
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="contact" element={<Contact />} />
+          <Route path="cart" element={<Cart />} />
+          <Route path="*" element={<RouteNotFound />} />
+        </Route>
       </Routes>
     </div>
-  )
+  );
 }
 
 export default App;

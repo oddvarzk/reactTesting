@@ -5,10 +5,10 @@ import { Link } from "react-router-dom";
 
 export function Header(){
     return (
-        <header>
+        <header className="flex justify-between py-5 px-5">
             <div>
                 <Link to="/">
-                    <img src={logo} alt="Logo of website"/>
+                    <img className="h-20 w-25" src={logo} alt="Logo of website"/>
                 </Link>
             </div>
             <Nav/>
