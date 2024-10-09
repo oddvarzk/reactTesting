@@ -9,35 +9,43 @@ export function Home(){
 
     const [isError, setIsError] = useState(false);
 
-    useEffect(()  => {
+    useEffect(() => {
         async function getData() {
+            setIsLoading(true);
+            setIsError(false);
+    
             try {
                 const response = await fetch(url);
                 const json = await response.json();
                 setPosts(json.data);
-                console.log(json);
             } catch (error) {
-                setIsLoading(false);
                 setIsError(true);
+            } finally {
+                setIsLoading(false);
             }
         }
         getData();
     }, []);
 
     if (isLoading) {
-        return <div>Loading items...</div>;
+        return <div className='flex justify-center'>Loading items...</div>;
     }
 
     if (isError) {
-        return <div>Error loading items.. try refreshing the page.</div>;
+        return <div className='flex justify-center'>Error loading items.. try refreshing the page.</div>;
     }
 
     return (
+        <div className='px-5'>
+            <h1 className=''>Welcome to ...!</h1>
+        <div>
+
+        </div>
         <div className='flex flex-wrap gap-10 py-5 justify-center'>
             {posts.map((post) => (
                 <div key={post.id} className='w-52 cursor-pointer verflow-hidden transition-transform duration-200 hover:scale-105'>
                     <div>
-                        <img className='w-52 h-52' src={post.image.url}></img>
+                        <img className='w-48 h-64 shadow-lg' src={post.image.url}></img>
                     </div>
                     <div>
                         <h3>Rated {post.rating}/5</h3>
@@ -47,6 +55,7 @@ export function Home(){
                     </div>
                 </div>
             ))}
+        </div>
         </div>
     );
 }
